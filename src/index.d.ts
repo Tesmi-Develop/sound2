@@ -1,71 +1,31 @@
 import Sound2Instance from "./Sound2Class";
-import { Sound2Constructor } from "./Sound2Class";
+import { Sound2Properties, SoundProperties, Sound2Config } from "./types";
 
-declare global {
-	interface SoundsDictionary {}
-}
+interface Sound2Constructor {
 
-export declare interface Sound2Config {
-    LoadingTimeout: number,
-	SoundRemovalDelay: number,
-	ParentObject: Instance,
-	SoundsDictionary: SoundsDictionary,
-}
-
-export interface Sound2Properties {
-	SoundId: string,
-	Priority: number,
-	VolumeChangeType: number,
-	VolumeChangeTime: number,
-	Volume: number,
-	MuteOthers: boolean,
-	StartDelay: number,
-	MutedVolume: number,
-	Parent: Instance,
-}
-
-export interface SoundProperties {
-	Archivable: boolean;
-	Name: string;
-	Parent: Instance;
-	PlayOnRemove: boolean;
-	RollOffMaxDistance: number;
-	RollOffMinDistance: number;
-	RollOffMode: Enum.RollOffMode;
-	Looped: boolean;
-	PlaybackRegionsEnabled: boolean;
-	PlaybackSpeed: number;
-	Playing: boolean;
-	TimePosition: number;
-	SoundGroup: SoundGroup;
-}
-
-export interface VolumeChangeType {
-    Smooth: number;
-	Instant: number;
-}
-
-interface Sound2 extends Sound2Constructor {
+	SoundsDictionary: { };
 
 	/**
-	 * A Table that represents VolumeChangeType Enum.
+	 * Constructs the Sound2 Instance.
 	 */
-    VolumeChangeType: VolumeChangeType;
-
+	new<T extends string = string>(Sound2Properties?: Partial<Sound2Properties<T>>, SoundProperties?: Partial<SoundProperties>): Sound2Instance
+	
 	/**
 	 * Returns a copy of the current global config.
 	 */
-    GetGlobalConfig: () => Sound2Config;
+	GetGlobalConfig: () => Sound2Config;
 
 	/**
 	 * Sets the current global config.
 	 */
-    SetGlobalConfig: (config: Partial<Sound2Config>) => void;
-    
+	SetGlobalConfig: (config: Partial<Sound2Config>) => void;
+
 	/**
 	 * Returns a table with all the currently playing Sound2 Instances.
 	 */
 	GetAllPlayingSounds: () => Array<Sound2Instance>;
 }
 
-export declare const Sound2: Sound2;
+declare const Sound2: Sound2Constructor;
+
+export = Sound2;
