@@ -1,16 +1,10 @@
-declare global {
-	interface SoundsDictionary {}
-}
-
 export interface Sound2Config {
     LoadingTimeout: number,
 	SoundRemovalDelay: number,
 	ParentObject: Instance,
-	SoundsDictionary: SoundsDictionary,
 }
 
-export interface Sound2Properties<T extends string = string> {
-	SoundId: keyof SoundsDictionary | `rbxassetid://${T}`,
+export interface Sound2Properties {
 	Priority: number,
 	VolumeChangeType: number,
 	VolumeChangeTime: number,

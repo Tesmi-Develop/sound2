@@ -1,11 +1,13 @@
 import { Sound2Properties, SoundEvents } from "./types";
 
 
-export default interface Sound2Instance extends Sound2Properties {
+export default interface Sound2Instance extends Omit<Sound2Properties, 'Parent'> {
+	SoundObject: Sound,
+
     /**
 	 * Plays the current Sound2 Instance. Will not stop automatically if Roblox Instance is .Looped
 	 */
-	Play(WaitForLoading?: boolean): void;
+	Play(): void;
 
 	/**
 	 * Pauses the current Instance if playing. Can only be resumed by Sound2:Resume()
